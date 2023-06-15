@@ -17,7 +17,7 @@
 SRC=$(realpath $(cd -P "$(dirname "${BASH_SOURCE[0]}")" && pwd))
 
 ATTEMPTS=10
-BASE=/media/src
+BASE=/mnt/arm-build
 JOBS=$((`nproc` + 2))
 TTL=86400
 UPDATE=0
@@ -50,7 +50,7 @@ fi
 if [ -z "$VERSION" ]; then
   VERSION=$(
     curl -s https://omahaproxy.appspot.com/all.json | \
-      jq -r '.[] | select(.os == "win64") | .versions[] | select(.channel == "stable") | .current_version'
+      jq -r '.[] | select(.os == "linux") | .versions[] | select(.channel == "stable") | .current_version'
   )
 fi
 
@@ -109,6 +109,12 @@ if [ ! -d $BASE/chromium/src ]; then
   # retrieve
   pushd $BASE/chromium &> /dev/null
   fetch --nohooks chromium
+  popd &> /dev/null
+
+  # install build deps
+  echo "INSTALLING BUILD DEPS"
+  pushd $BASE/chromium/src &> /dev/null
+  ./build/install-build-deps.sh --arm --no-nacl
   popd &> /dev/null
 
   # run hooks
@@ -188,8 +194,12 @@ if [ "$SYNC" -eq "1" ]; then
   headless_use_embedded_resources=true
   headless_use_prefs=true
   chrome_pgo_phase=0
+  target_cpu="arm64"
   " > $PROJECT/args.gn
 
+  # install sysroot
+  ./build/linux/sysroot_scripts/install-sysroot.py --arch=arm64
+  
   # generate build files
   gn gen $PROJECT
 fi
