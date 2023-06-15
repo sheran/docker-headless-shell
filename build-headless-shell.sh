@@ -194,7 +194,7 @@ if [ "$SYNC" -eq "1" ]; then
   headless_use_embedded_resources=true
   headless_use_prefs=true
   chrome_pgo_phase=0
-  target_cpu="arm64"
+  target_cpu=\"arm64\"  
   " > $PROJECT/args.gn
 
   # install sysroot
