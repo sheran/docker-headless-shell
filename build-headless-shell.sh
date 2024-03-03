@@ -56,7 +56,7 @@ fi
 # latest version after omahaproxy is dead
 if [ -z "$VERSION" ]; then
   VERSION=$(
-    curl -s https://versionhistory.googleapis.com/v1/chrome/platforms/linux/channels/stable/versions/ | jq '.[][0]'
+    curl -s https://versionhistory.googleapis.com/v1/chrome/platforms/linux/channels/stable/versions/ | jq -r '.versions[0]|.version'
   )
 fi
 
