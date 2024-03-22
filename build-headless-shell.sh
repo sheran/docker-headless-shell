@@ -241,7 +241,7 @@ pushd $TMPDIR/headless-shell &> /dev/null
 
 # rename and strip
 mv headless_shell headless-shell
-aarch64-linux-gnu-strip headless-shell *.so *.so.1
+strip headless-shell *.so *.so.1
 chmod -x *.so *.so.1
 
 ## MAY have to set QEMU_LD_PREFIX to
