@@ -17,7 +17,7 @@
 SRC=$(realpath $(cd -P "$(dirname "${BASH_SOURCE[0]}")" && pwd))
 
 ATTEMPTS=10
-BASE=/mnt/arm-build
+BASE=/mnt/x64-build
 JOBS=$((`nproc` + 2))
 TTL=86400
 UPDATE=0
@@ -120,7 +120,7 @@ if [ ! -d $BASE/chromium/src ]; then
   # install build deps
   echo "INSTALLING BUILD DEPS"
   pushd $BASE/chromium/src &> /dev/null
-  ./build/install-build-deps.sh --arm --no-nacl
+  ./build/install-build-deps.sh --no-nacl
   popd &> /dev/null
 
   # run hooks
@@ -200,11 +200,10 @@ if [ "$SYNC" -eq "1" ]; then
   headless_use_embedded_resources=true
   headless_use_prefs=true
   chrome_pgo_phase=0
-  target_cpu=\"arm64\"  
   " > $PROJECT/args.gn
 
   # install sysroot
-  ./build/linux/sysroot_scripts/install-sysroot.py --arch=arm64
+  #./build/linux/sysroot_scripts/install-sysroot.py --arch=arm64
   
   # generate build files
   gn gen $PROJECT
