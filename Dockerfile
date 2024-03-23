@@ -1,4 +1,4 @@
-FROM arm64v8/debian:bullseye-slim
+FROM debian:trixie-slim
 ARG VERSION
 RUN \
     apt-get update -y \
