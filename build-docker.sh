@@ -53,7 +53,7 @@ done
   mkdir -p  $SRC/out/arm64/$VERSION
   tar -jxf $SRC/out/arm64/headless-shell-$VERSION.tar.bz2 -C $SRC/out/arm64/$VERSION/
   #docker build --build-arg VERSION=$VERSION ${PARAMS[@]} --quiet .
-  docker buildx build --platform linux/arm64/v8 --build-arg VERSION=$VERSION ${PARAMS[@]} --load .
+  docker buildx build --platform linux/arm64/v8 --build-arg VERSION=$VERSION ${PARAMS[@]} --push .
 )
 
 popd &> /dev/null
