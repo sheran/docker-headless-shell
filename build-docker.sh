@@ -2,8 +2,8 @@
 
 SRC=$(realpath $(cd -P "$(dirname "${BASH_SOURCE[0]}")" && pwd))
 
-if [ ! -d $SRC/out ]; then
-  echo "$SRC/out does not exist!"
+if [ ! -d $SRC/out/amd64 ]; then
+  echo "$SRC/out/amd64 does not exist!"
   exit 1
 fi
 
@@ -21,14 +21,14 @@ esac
 done
 
 if [ -z "$VERSION" ]; then
-  pushd $SRC/out &> /dev/null
+  pushd $SRC/out/amd64 &> /dev/null
   VERSION=$(ls *.bz2|sort -r -V|head -1|sed -e 's/^headless-shell-//' -e 's/\.tar\.bz2$//')
   popd &> /dev/null
 fi
 
 set -e
 
-ARCHIVE=$SRC/out/headless-shell-$VERSION.tar.bz2
+ARCHIVE=$SRC/out/amd64/headless-shell-$VERSION.tar.bz2
 if [ ! -f $ARCHIVE ]; then
   echo "error: $ARCHIVE doesn't exist!"
   exit 1
