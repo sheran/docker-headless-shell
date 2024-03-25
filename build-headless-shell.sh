@@ -66,9 +66,9 @@ echo "JOBS:     $JOBS"
 echo "UPDATE:   $UPDATE"
 echo "VERSION:  $VERSION"
 
-mkdir -p $SRC/out
+mkdir -p $SRC/out/arm64
 TMPDIR=$(mktemp -d -p /tmp headless-shell-$VERSION.XXXXX)
-ARCHIVE=$SRC/out/headless-shell-$VERSION.tar.bz2
+ARCHIVE=$SRC/out/arm64/headless-shell-$VERSION.tar.bz2
 echo "TMPDIR:   $TMPDIR"
 echo "ARCHIVE:  $ARCHIVE"
 
