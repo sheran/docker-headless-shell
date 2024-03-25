@@ -68,7 +68,7 @@ echo "VERSION:  $VERSION"
 
 mkdir -p $SRC/out/amd64
 TMPDIR=$(mktemp -d -p /tmp headless-shell-$VERSION.XXXXX)
-ARCHIVE=$SRC/out/headless-shell-$VERSION.tar.bz2
+ARCHIVE=$SRC/out/amd64/headless-shell-$VERSION.tar.bz2
 echo "TMPDIR:   $TMPDIR"
 echo "ARCHIVE:  $ARCHIVE"
 

@@ -51,7 +51,7 @@ done
 (set -x;
   rm -rf $SRC/out/amd64/$VERSION
   mkdir -p  $SRC/out/amd64/$VERSION
-  tar -jxf $SRC/out/amd64/headless-shell-$VERSION.tar.bz2 -C $SRC/out/$VERSION/
+  tar -jxf $SRC/out/amd64/headless-shell-$VERSION.tar.bz2 -C $SRC/out/amd64/$VERSION/
   #docker build --build-arg VERSION=$VERSION ${PARAMS[@]} --quiet .
   docker buildx build --build-arg VERSION=$VERSION ${PARAMS[@]} --load .
 )
