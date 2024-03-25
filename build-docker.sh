@@ -52,7 +52,8 @@ done
   rm -rf $SRC/out/$VERSION
   mkdir -p  $SRC/out/$VERSION
   tar -jxf $SRC/out/headless-shell-$VERSION.tar.bz2 -C $SRC/out/$VERSION/
-  docker build --build-arg VERSION=$VERSION ${PARAMS[@]} --quiet .
+  #docker build --build-arg VERSION=$VERSION ${PARAMS[@]} --quiet .
+  docker buildx build --build-arg VERSION=$VERSION ${PARAMS[@]} --load .
 )
 
 popd &> /dev/null
